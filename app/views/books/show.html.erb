@@ -28,7 +28,9 @@
           <td><%= "#{@book.book_comments.count} コメント" %></td>
         </tr>
       </table>
-       <%= render 'books/comment', book: @book %>
+      <div id="comments_area">
+       <%= render 'book_comments/comment', book: @book %>
+      </div>
        <% if @comment.errors.any? %>
         <%= @comment.errors.count %>件のエラーが発生しました
          <ul>
@@ -38,7 +40,7 @@
          <% end %>
       <% end %>
       <div class="new-comment">
-        <%= form_with(model:[@book, @comment], local: true) do |f| %>
+        <%= form_with(model:[@book, @comment]) do |f| %>
           <%= f.text_area :comment, rows:'5'%>
           <%= f.submit "送信" %>
         <% end %>
